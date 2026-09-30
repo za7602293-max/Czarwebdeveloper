@@ -1,0 +1,6 @@
+{
+  "name": "Apex Gloss - Car Detailing Studio",
+  "description": "Showroom Shine, Every Time. Premium automotive detailing, ceramic coating, PPF, and deep interior restoration studio.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
