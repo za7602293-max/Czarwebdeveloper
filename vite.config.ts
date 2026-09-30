@@ -6,9 +6,26 @@ import {defineConfig} from 'vite';
 export default defineConfig(() => {
   return {
     base: './',
-    plugins: [react(), tailwindcss()],
+    plugins: [
+      {
+        name: 'serve-dev-html',
+        configureServer(server) {
+          server.middlewares.use((req, _res, next) => {
+            if (req.url === '/' || req.url === '/index.html') {
+              req.url = '/index.dev.html';
+            }
+            next();
+          });
+        },
+      },
+      react(),
+      tailwindcss(),
+    ],
     build: {
       rollupOptions: {
+        input: {
+          main: path.resolve(import.meta.dirname || '.', 'index.dev.html'),
+        },
         output: {
           entryFileNames: 'assets/index.js',
           chunkFileNames: 'assets/[name].js',
