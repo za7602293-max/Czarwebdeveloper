@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Calendar } from 'lucide-react';
+import { Menu, X, Phone, Calendar, Bot } from 'lucide-react';
 import { STUDIO_INFO } from '../data/detailingData.ts';
 
 interface NavbarProps {
   onBookNowClick: () => void;
+  onOpenChatbot?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onBookNowClick }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onBookNowClick, onOpenChatbot }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -90,8 +91,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookNowClick }) => {
             ))}
           </nav>
 
-          {/* Zone 3: Primary Action */}
-          <div className="flex items-center gap-4">
+          {/* Zone 3: Primary Action & AI Concierge */}
+          <div className="flex items-center gap-3">
+            {onOpenChatbot && (
+              <button
+                onClick={onOpenChatbot}
+                className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm text-xs font-semibold uppercase tracking-wider text-neutral-300 hover:text-white bg-[#12141A] hover:bg-[#181B24] border border-white/[0.08] hover:border-[#E5B54F]/50 transition-colors cursor-pointer"
+                title="Chat with AI Concierge"
+              >
+                <Bot className="w-3.5 h-3.5 text-[#E5B54F]" />
+                <span>AI Chat</span>
+              </button>
+            )}
+
             <a
               href={`tel:${STUDIO_INFO.phoneRaw}`}
               className="hidden sm:inline-flex items-center gap-2 text-xs text-neutral-300 hover:text-[#E5B54F] transition-colors py-1.5"
@@ -144,12 +156,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookNowClick }) => {
                 <Phone className="w-3.5 h-3.5 text-[#E5B54F]" />
                 <span className="font-mono-num">{STUDIO_INFO.phone}</span>
               </a>
+              {onOpenChatbot && (
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenChatbot();
+                  }}
+                  className="w-full py-2.5 rounded-sm font-semibold text-xs tracking-wider uppercase bg-[#14161C] hover:bg-[#1E2028] text-white border border-white/[0.1] text-center flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <Bot className="w-4 h-4 text-[#E5B54F]" />
+                  <span>Chat With Studio AI</span>
+                </button>
+              )}
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onBookNowClick();
                 }}
-                className="w-full py-3 rounded-sm font-semibold text-xs tracking-wider uppercase bg-[#E5B54F] text-black text-center flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-sm font-semibold text-xs tracking-wider uppercase bg-[#E5B54F] text-black text-center flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Calendar className="w-3.5 h-3.5" />
                 <span>Reserve Appointment</span>

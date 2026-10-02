@@ -15,9 +15,11 @@ import { BookingForm } from './components/BookingForm.tsx';
 import { ContactSection } from './components/ContactSection.tsx';
 import { Footer } from './components/Footer.tsx';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp.tsx';
+import { ChatbotWidget } from './components/ChatbotWidget.tsx';
 
 export default function App() {
   const [selectedService, setSelectedService] = useState<string>('Ceramic Coating');
+  const [isChatbotOpen, setIsChatbotOpen] = useState<boolean>(false);
 
   const scrollToBooking = (serviceName?: string) => {
     if (serviceName) {
@@ -38,7 +40,10 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#070708] text-neutral-100 flex flex-col font-sans selection:bg-[#E5B54F]/30 selection:text-[#F6D686]">
       {/* 1. Sticky Navbar */}
-      <Navbar onBookNowClick={() => scrollToBooking()} />
+      <Navbar
+        onBookNowClick={() => scrollToBooking()}
+        onOpenChatbot={() => setIsChatbotOpen(true)}
+      />
 
       <main className="flex-1">
         {/* 2. Hero Section */}
@@ -72,8 +77,15 @@ export default function App() {
       {/* 10. Footer Section */}
       <Footer />
 
-      {/* Floating WhatsApp Action Button */}
-      <FloatingWhatsApp />
+      {/* Floating Bottom-Right Concierge Dock (WhatsApp + AI Chatbot) */}
+      <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 flex items-center gap-2.5">
+        <FloatingWhatsApp />
+        <ChatbotWidget
+          isOpen={isChatbotOpen}
+          onToggle={() => setIsChatbotOpen(!isChatbotOpen)}
+          onBookPackage={(pkg) => scrollToBooking(pkg)}
+        />
+      </div>
     </div>
   );
 }
