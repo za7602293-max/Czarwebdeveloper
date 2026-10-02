@@ -36,7 +36,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0B0C] text-neutral-100 flex flex-col font-sans selection:bg-[#D4AF37]/30 selection:text-[#F3C954]">
+    <div className="min-h-screen bg-[#070708] text-neutral-100 flex flex-col font-sans selection:bg-[#E5B54F]/30 selection:text-[#F6D686]">
       {/* 1. Sticky Navbar */}
       <Navbar onBookNowClick={() => scrollToBooking()} />
 

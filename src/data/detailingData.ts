@@ -143,7 +143,7 @@ export const PACKAGES: PackageItem[] = [
   {
     id: "basic-wash",
     name: "Basic Wash & Gloss",
-    price: "$79",
+    price: "₹2,999",
     tagline: "Essential decontamination & meticulous hand touch maintenance.",
     duration: "90 Minutes",
     isPopular: false,
@@ -159,7 +159,7 @@ export const PACKAGES: PackageItem[] = [
   {
     id: "premium-detailing",
     name: "Premium Detailing",
-    price: "$249",
+    price: "₹9,999",
     tagline: "Comprehensive paint revival, interior revival & 6-month ceramic seal.",
     duration: "4–5 Hours",
     isPopular: true,
@@ -176,7 +176,7 @@ export const PACKAGES: PackageItem[] = [
   {
     id: "ceramic-pro",
     name: "Ceramic Pro 9H Studio",
-    price: "$699",
+    price: "₹24,999",
     tagline: "The ultimate flagship protection: multi-stage correction & multi-year ceramic barrier.",
     duration: "1–2 Days",
     isPopular: false,

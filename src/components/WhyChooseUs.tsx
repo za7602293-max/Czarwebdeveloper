@@ -1,72 +1,89 @@
 import React from 'react';
-import { WHY_CHOOSE_US } from '../data/detailingData.ts';
-import { ShieldCheck, Truck, Award, Users } from 'lucide-react';
+import { Gauge, Sparkles, Award, Shield } from 'lucide-react';
 
 export const WhyChooseUs: React.FC = () => {
-  const getIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'ShieldCheck':
-        return <ShieldCheck className="w-8 h-8 text-[#D4AF37]" />;
-      case 'Truck':
-        return <Truck className="w-8 h-8 text-[#D4AF37]" />;
-      case 'Award':
-        return <Award className="w-8 h-8 text-[#D4AF37]" />;
-      case 'Users':
-        return <Users className="w-8 h-8 text-[#D4AF37]" />;
-      default:
-        return <ShieldCheck className="w-8 h-8 text-[#D4AF37]" />;
-    }
-  };
+  const standards = [
+    {
+      num: '01',
+      title: 'Ultrasonic Paint Profiling',
+      metric: '0.1 µm Precision',
+      desc: 'Multi-point digital paint depth mapping across all panels before any rotary pad touches your vehicle to verify factory clear-coat safety.',
+      icon: <Gauge className="w-5 h-5 text-[#E5B54F]" />,
+    },
+    {
+      num: '02',
+      title: 'High-CRI Inspection Bay',
+      metric: '4000K · CRI 98+',
+      desc: 'Equipped with shadow-free dual-spectrum inspection lights that expose hidden holograms, buffer trails, and micro-scratches invisible in standard lighting.',
+      icon: <Sparkles className="w-5 h-5 text-[#E5B54F]" />,
+    },
+    {
+      num: '03',
+      title: 'Certified Master Artisans',
+      metric: 'IDA & XPEL Certified',
+      desc: 'Our senior craftsmen have preserved over 1,200 exotic hypercars, vintage Ferrari classics, and limited-edition homologation specials.',
+      icon: <Award className="w-5 h-5 text-[#E5B54F]" />,
+    },
+    {
+      num: '04',
+      title: 'Enclosed Valet Transport',
+      metric: 'Fully Insured $2M+',
+      desc: 'White-glove collection and return in fully enclosed climate-controlled transporters, shielding your vehicle from highway gravel and debris.',
+      icon: <Shield className="w-5 h-5 text-[#E5B54F]" />,
+    },
+  ];
 
   return (
-    <section id="why-us" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#0F0F12] relative border-t border-neutral-800/80">
+    <section id="why-us" className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 bg-[#090A0D] relative border-t border-b border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="text-xs uppercase tracking-[0.25em] text-[#D4AF37] font-semibold mb-2">
-            The Apex Standard
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-white/[0.08]">
+          <div className="max-w-2xl">
+            <div className="text-[11px] uppercase tracking-[0.25em] text-[#E5B54F] font-semibold mb-3">
+              The Apex Standard
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-white">
+              Institutional-Grade Surface Protocols
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black font-heading tracking-tight text-white">
-            Why Discerning Drivers Choose Us
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-neutral-400 font-light leading-relaxed">
-            We don't do quick car washes. We engineer long-lasting optical depth and surface protection through strict laboratory-grade detailing protocols.
+          <p className="mt-4 md:mt-0 text-sm sm:text-base text-neutral-400 font-light max-w-md leading-relaxed">
+            We reject high-volume assembly lines. Every vehicle is treated as an irreplaceable collector asset with full photographic documentation.
           </p>
         </div>
 
         {/* 4 Pillars Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {WHY_CHOOSE_US.map((item) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {standards.map((item) => (
             <div
-              key={item.id}
-              className="group p-7 sm:p-8 rounded-2xl bg-[#131317] border border-neutral-800/90 hover:border-[#D4AF37]/50 transition-all duration-300 hover:shadow-[0_10px_25px_rgba(0,0,0,0.6),0_0_20px_rgba(212,175,55,0.1)] flex flex-col justify-between"
+              key={item.num}
+              className="p-7 rounded-sm bg-[#101114] border border-white/[0.08] hover:border-[#E5B54F]/40 transition-all duration-200 flex flex-col justify-between"
             >
               <div>
-                {/* Icon in gold container */}
-                <div className="w-14 h-14 rounded-xl bg-[#1A1A22] border border-neutral-800 group-hover:border-[#D4AF37]/40 flex items-center justify-center mb-6 transition-colors shadow-inner">
-                  {getIcon(item.icon)}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-10 h-10 rounded-sm bg-[#16181E] border border-white/[0.08] flex items-center justify-center">
+                    {item.icon}
+                  </div>
+                  <span className="font-mono-num text-xs font-semibold text-[#E5B54F]">
+                    {item.num}.
+                  </span>
                 </div>
 
-                {/* Clean unboxed tag */}
-                <div className="text-[11px] font-mono tracking-wider text-[#D4AF37] uppercase mb-2">
-                  {item.badge}
+                <div className="text-[11px] font-mono-num text-[#E5B54F] uppercase tracking-wider mb-1">
+                  {item.metric}
                 </div>
 
-                {/* Title */}
-                <h3 className="text-lg sm:text-xl font-bold font-heading text-white group-hover:text-[#F3C954] transition-colors">
+                <h3 className="text-lg font-display font-bold text-white tracking-tight">
                   {item.title}
                 </h3>
 
-                {/* Description */}
                 <p className="mt-3 text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
-                  {item.description}
+                  {item.desc}
                 </p>
               </div>
 
-              {/* Bottom hairline accent */}
-              <div className="mt-6 pt-4 border-t border-neutral-800/60 flex items-center justify-between text-[11px] text-neutral-400 font-mono">
-                <span>Standard Protocol</span>
-                <span className="text-[#D4AF37]">✓ Guaranteed</span>
+              <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-neutral-400 font-mono-num">
+                <span>Atelier Rigor</span>
+                <span className="text-[#E5B54F]">100% Certified</span>
               </div>
             </div>
           ))}
